@@ -9,7 +9,7 @@ G4L.VehicleGod = G4L.VehicleGod or {}
 
 G4L.Config.VehicleGod = {
     Enabled = true,
-    DefaultLanguage = "fr",
+    DefaultLanguage = "en",
 
     -- Fichier des modeles ajoutes en jeu : data/gmod4life_system_hardening/permanent_models.json
     DataDir = "gmod4life_system_hardening",

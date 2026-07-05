@@ -14,9 +14,9 @@ local phrases = {
         god_not_permanent = "Ce modele n'est pas dans la liste permanente.",
         god_list_empty = "Aucun modele en god permanent.",
         hud_god = "GOD SVMOD",
-        context_add_permanent = "Ajouter god permanent",
-        context_remove_permanent = "Retirer god permanent",
-        context_config = "God permanent (config)",
+        context_add_permanent = "Ajouter blindage permanent",
+        context_remove_permanent = "Retirer blindage permanent",
+        context_config = "Blindage permanent (config)",
         tool_name = "System Hardening",
         tool_desc = "God permanent SVMOD — ajoute ou retire un modele de la liste",
         tool_left = "Basculer god permanent",
@@ -54,7 +54,7 @@ local phrases = {
         hud_disabled = "HUD staff desactive.",
     },
     en = {
-        addon_name = "SVMod | Blindage systeme",
+        addon_name = "SVMod | System Hardening",
         no_svmod = "SVMOD is not installed on this server.",
         no_vehicle = "Aim at a valid SVMOD vehicle.",
         no_permission = "You do not have permission.",
@@ -66,9 +66,9 @@ local phrases = {
         god_not_permanent = "This model is not in the permanent list.",
         god_list_empty = "No permanently god models.",
         hud_god = "SVMOD GOD",
-        context_add_permanent = "Add permanent god",
-        context_remove_permanent = "Remove permanent god",
-        context_config = "Permanent god (config)",
+        context_add_permanent = "Add permanent hardening",
+        context_remove_permanent = "Remove permanent hardening",
+        context_config = "Permanent hardening (config)",
         tool_name = "System Hardening",
         tool_desc = "Permanent SVMOD god — add or remove a model from the list",
         tool_left = "Toggle permanent god",
@@ -84,7 +84,7 @@ local phrases = {
         source_config = "Config lua",
         source_always = "AlwaysGodModels",
         source_permanent = "Permanent JSON",
-        menu_title = "SVMod | Blindage systeme",
+        menu_title = "SVMod | System Hardening",
         menu_tab_config = "Config lua",
         menu_tab_permanent = "Permanent JSON",
         menu_tab_world = "World (live)",
@@ -127,12 +127,12 @@ function G4L.VehicleGod.GetLangCode(ply)
         return string.lower(cfgLang)
     end
 
-    return "fr"
+    return "en"
 end
 
 function G4L.VehicleGod.L(key, replacements, ply)
     local lang = G4L.VehicleGod.GetLangCode(ply)
-    local pack = phrases[lang] or phrases.fr
+    local pack = phrases[lang] or phrases.en
     local text = pack[key] or phrases.en[key] or key
 
     if replacements then

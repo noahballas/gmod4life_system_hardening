@@ -1,3 +1,36 @@
+local function createFonts()
+    surface.CreateFont("G4L.VehicleGod:Bold24", {
+        font = "Montserrat Bold",
+        size = 24,
+        extended = true,
+        antialias = true,
+    })
+
+    surface.CreateFont("G4L.VehicleGod:Bold20", {
+        font = "Montserrat Bold",
+        size = 20,
+        extended = true,
+        antialias = true,
+    })
+
+    surface.CreateFont("G4L.VehicleGod:Bold18", {
+        font = "Montserrat Bold",
+        size = 18,
+        extended = true,
+        antialias = true,
+    })
+
+    surface.CreateFont("G4L.VehicleGod:Bold14", {
+        font = "Montserrat Bold",
+        size = 14,
+        extended = true,
+        antialias = true,
+    })
+end
+
+createFonts()
+hook.Add("OnScreenSizeChanged", "G4L.VehicleGod:Fonts", createFonts)
+
 net.Receive("G4L.VehicleGod:SyncPermanent", function()
     G4L.VehicleGod.PermanentModels = {}
 

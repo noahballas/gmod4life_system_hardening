@@ -22,53 +22,72 @@ function G4L.VehicleGod.IsSVMODLoaded()
     return SVMOD ~= nil
 end
 
-function G4L.VehicleGod.GetDriverSeat(veh)
-    if not G4L.VehicleGod.IsSVMODLoaded() then return nil end
-    if not SVMOD:IsVehicle(veh) then return nil end
-    if veh.SV_IsPassengerSeat and veh:SV_IsPassengerSeat() then
-        return veh:SV_GetDriverSeat()
-    end
-    return veh
+function G4L.VehicleGod.IsSVMODVehicle(veh)
+    if not IsValid(veh) then return false end
+    if SVMOD and SVMOD.IsVehicle and SVMOD:IsVehicle(veh) then return true end
+    -- SVMOD n'est pas toujours present cote client : detecter via les methodes du siege
+    return isfunction(veh.SV_GetDriverSeat)
+        or isfunction(veh.SV_IsPassengerSeat)
+        or isfunction(veh.SV_GetHealth)
 end
 
-function G4L.VehicleGod.IsSVMODVehicle(veh)
-    if not G4L.VehicleGod.IsSVMODLoaded() then return false end
-    return SVMOD:IsVehicle(veh)
+function G4L.VehicleGod.GetDriverSeat(veh)
+    if not IsValid(veh) then return nil end
+
+    if veh.SV_IsPassengerSeat and veh:SV_IsPassengerSeat() then
+        local driver = veh:SV_GetDriverSeat()
+        if IsValid(driver) then return driver end
+    end
+
+    if G4L.VehicleGod.IsSVMODVehicle(veh) then
+        return veh
+    end
+
+    if veh:IsVehicle() then
+        return veh
+    end
+
+    return nil
+end
+
+local function tryResolveSeatEntity(e)
+    if G4L.VehicleGod.IsSVMODVehicle(e) or e:IsVehicle() then
+        return G4L.VehicleGod.GetDriverSeat(e)
+    end
+end
+
+local function walkEntityChildren(ent, tryEntity)
+    if not ent.GetChildren then return end
+
+    local children = ent:GetChildren()
+    if not istable(children) then return end
+
+    for _, child in ipairs(children) do
+        local seat = tryEntity(child)
+        if IsValid(seat) then return seat end
+    end
 end
 
 function G4L.VehicleGod.ResolveSeat(ent, maxDepth)
     if not IsValid(ent) then return nil end
+    if ent:IsPlayer() then return nil end
+
     maxDepth = maxDepth or 8
 
-    local function tryEntity(e)
-        if G4L.VehicleGod.IsSVMODVehicle(e) then
-            return G4L.VehicleGod.GetDriverSeat(e)
-        end
-    end
-
-    local seat = tryEntity(ent)
+    local seat = tryResolveSeatEntity(ent)
     if IsValid(seat) then return seat end
 
     local parent = ent:GetParent()
     local depth = 0
     while IsValid(parent) and depth < maxDepth do
-        seat = tryEntity(parent)
+        seat = tryResolveSeatEntity(parent)
         if IsValid(seat) then return seat end
         parent = parent:GetParent()
         depth = depth + 1
     end
 
-    if ent.GetChildren then
-        for _, child in ipairs(ent:GetChildren()) do
-            seat = tryEntity(child)
-            if IsValid(seat) then return seat end
-        end
-    end
-
-    if ent:IsVehicle() then
-        seat = tryEntity(ent)
-        if IsValid(seat) then return seat end
-    end
+    seat = walkEntityChildren(ent, tryResolveSeatEntity)
+    if IsValid(seat) then return seat end
 
     return nil
 end
