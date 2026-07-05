@@ -134,23 +134,6 @@ Convar client (langue) :
 g4l_system_hardening_lang fr   -- ou en
 ```
 
----
-
-## API développeur
-
-```lua
-G4L.VehicleGod.IsGod(seat)
-G4L.VehicleGod.ShouldBeGod(seat)
-G4L.VehicleGod.GetConfigMatch(seat)
-G4L.VehicleGod.IsPermanentModel(model)
-G4L.VehicleGod.ResolveSeat(ent)
-G4L.VehicleGod.AddPermanent(seat, ply)
-G4L.VehicleGod.RemovePermanent(seat, ply)
-G4L.VehicleGod.TogglePermanent(seat, ply)
-```
-
----
-
 ## Blindage temporaire vs permanent
 
 | Système | Type | Addon |
