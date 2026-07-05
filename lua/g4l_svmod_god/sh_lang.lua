@@ -48,6 +48,10 @@ local phrases = {
         menu_empty = "Aucune entree.",
         menu_hint_config = "God permanent par modele. Config lua + data/permanent_models.json",
         menu_command = "Commande : g4l_god_menu",
+        menu_hud_enable = "Activer le HUD",
+        menu_hud_disable = "Desactiver le HUD",
+        hud_enabled = "HUD staff active.",
+        hud_disabled = "HUD staff desactive.",
     },
     en = {
         addon_name = "G4L SVMOD God",
@@ -96,6 +100,10 @@ local phrases = {
         menu_empty = "No entries.",
         menu_hint_config = "Permanent god by model. Config lua + data/permanent_models.json",
         menu_command = "Command: g4l_god_menu",
+        menu_hud_enable = "Enable HUD",
+        menu_hud_disable = "Disable HUD",
+        hud_enabled = "Staff HUD enabled.",
+        hud_disabled = "Staff HUD disabled.",
     },
 }
 

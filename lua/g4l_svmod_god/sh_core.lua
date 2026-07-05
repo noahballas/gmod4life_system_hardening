@@ -147,3 +147,32 @@ end
 function G4L.VehicleGod.IsGod(seat)
     return G4L.VehicleGod.ShouldBeGod(seat)
 end
+
+function G4L.VehicleGod.GetHudConfig()
+    return cfg().Hud or {}
+end
+
+local HUD_NW = "G4L_VehicleGod_Hud"
+
+function G4L.VehicleGod.IsStaffHudEnabled(ply)
+    if not IsValid(ply) then return false end
+    return ply:GetNWBool(HUD_NW, false)
+end
+
+function G4L.VehicleGod.CanDrawHud(ply)
+    local hud = G4L.VehicleGod.GetHudConfig()
+    if hud.AdminsOnly ~= false and not G4L.VehicleGod.IsAdmin(ply) then return false end
+    return G4L.VehicleGod.IsStaffHudEnabled(ply)
+end
+
+function G4L.VehicleGod.CanDrawAdminCrosshair(ply)
+    if not G4L.VehicleGod.CanDrawHud(ply) then return false end
+    return G4L.VehicleGod.GetHudConfig().AdminCrosshair ~= false
+end
+
+function G4L.VehicleGod.CanDrawPlayerIndicator(ply)
+    if not G4L.VehicleGod.CanDrawHud(ply) then return false end
+    return G4L.VehicleGod.GetHudConfig().PlayerIndicator ~= false
+end
+
+G4L.VehicleGod.HudNWKey = HUD_NW

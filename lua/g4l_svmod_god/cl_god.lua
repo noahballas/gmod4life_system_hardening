@@ -57,7 +57,8 @@ local function drawVehicleInfo(seat)
 end
 
 hook.Add("HUDPaint", "G4L.VehicleGod:AdminInfo", function()
-    if not G4L.VehicleGod.IsAdmin(LocalPlayer()) then return end
+    local ply = LocalPlayer()
+    if not G4L.VehicleGod.CanDrawAdminCrosshair(ply) then return end
 
     local seat = getAimedSeat()
     if IsValid(seat) then
@@ -66,9 +67,9 @@ hook.Add("HUDPaint", "G4L.VehicleGod:AdminInfo", function()
 end)
 
 hook.Add("HUDPaint", "G4L.VehicleGod:Indicator", function()
-    if not G4L.VehicleGod.GetConfig().ShowHudIndicator then return end
-
     local ply = LocalPlayer()
+    if not G4L.VehicleGod.CanDrawPlayerIndicator(ply) then return end
+
     local veh = ply:GetVehicle()
     if not IsValid(veh) then return end
 

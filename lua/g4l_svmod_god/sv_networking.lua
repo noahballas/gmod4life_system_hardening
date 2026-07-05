@@ -1,7 +1,7 @@
 if CLIENT then return end
 
 local function sendMenu(ply)
-    local payload = G4L.VehicleGod.Store.BuildMenuPayload()
+    local payload = G4L.VehicleGod.Store.BuildMenuPayload(ply)
     net.Start("G4L.VehicleGod:OpenMenu")
         net.WriteString(util.TableToJSON(payload))
     net.Send(ply)
@@ -48,6 +48,14 @@ net.Receive("G4L.VehicleGod:MenuAction", function(_, ply)
 
     if action == "apply" then
         G4L.VehicleGod.ApplyAllPermanent()
+        sendMenu(ply)
+        return
+    end
+
+    if action == "toggle_hud" then
+        local enabled = not G4L.VehicleGod.IsStaffHudEnabled(ply)
+        ply:SetNWBool(G4L.VehicleGod.HudNWKey or "G4L_VehicleGod_Hud", enabled)
+        G4L.VehicleGod.Notify(ply, enabled and "hud_enabled" or "hud_disabled", 0)
         sendMenu(ply)
         return
     end

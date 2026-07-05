@@ -1,5 +1,4 @@
 AddCSLuaFile("g4l_svmod_god/config.lua")
-AddCSLuaFile("autorun/sh_g4l_svmod_god.lua")
 AddCSLuaFile("g4l_svmod_god/sh_core.lua")
 AddCSLuaFile("g4l_svmod_god/sh_lang.lua")
 AddCSLuaFile("g4l_svmod_god/cl_fonts.lua")
@@ -9,7 +8,6 @@ AddCSLuaFile("g4l_svmod_god/cl_god.lua")
 AddCSLuaFile("weapons/gmod_tool/stools/g4l_svmod_god.lua")
 
 include("g4l_svmod_god/config.lua")
-include("autorun/sh_g4l_svmod_god.lua")
 include("g4l_svmod_god/sh_core.lua")
 include("g4l_svmod_god/sh_lang.lua")
 

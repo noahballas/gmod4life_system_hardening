@@ -5,6 +5,7 @@
 
 G4L = G4L or {}
 G4L.Config = G4L.Config or {}
+G4L.VehicleGod = G4L.VehicleGod or {}
 
 G4L.Config.VehicleGod = {
     Enabled = true,
@@ -16,7 +17,13 @@ G4L.Config.VehicleGod = {
     ApplyConfigOnSpawn = true,
     AutoRepairOnEnable = true,
     ProtectOccupants = false,
-    ShowHudIndicator = true,
+
+    -- HUD staff (desactive par defaut, toggle dans g4l_god_menu)
+    Hud = {
+        AdminCrosshair = true,
+        PlayerIndicator = true,
+        AdminsOnly = true,
+    },
 
     AdminGroups = {
         ["superadmin"] = true,

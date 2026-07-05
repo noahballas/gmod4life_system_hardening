@@ -60,11 +60,12 @@ function G4L.VehicleGod.Store.ClearPermanent()
     G4L.VehicleGod.Store.Save({ models = {} })
 end
 
-function G4L.VehicleGod.Store.BuildMenuPayload()
+function G4L.VehicleGod.Store.BuildMenuPayload(ply)
     local payload = {
         config = {},
         permanent = {},
         world = {},
+        hud_enabled = IsValid(ply) and G4L.VehicleGod.IsStaffHudEnabled(ply) or false,
     }
 
     for id, entry in pairs(G4L.VehicleGod.GetConfig().Vehicles or {}) do

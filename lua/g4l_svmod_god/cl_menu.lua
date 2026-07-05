@@ -122,6 +122,19 @@ function G4L.VehicleGod.OpenMenu(data)
         net.SendToServer()
     end
 
+    local btnHud = vgui.Create("DButton", top)
+    btnHud:Dock(LEFT)
+    btnHud:SetWide(150)
+    btnHud:DockMargin(0, 0, 8, 0)
+    btnHud:SetText(data.hud_enabled and G4L.VehicleGod.L("menu_hud_disable") or G4L.VehicleGod.L("menu_hud_enable"))
+    styleButton(btnHud, data.hud_enabled)
+    btnHud.DoClick = function()
+        net.Start("G4L.VehicleGod:MenuAction")
+            net.WriteString("toggle_hud")
+            net.WriteString("")
+        net.SendToServer()
+    end
+
     local btnClose = vgui.Create("DButton", top)
     btnClose:Dock(RIGHT)
     btnClose:SetWide(100)
