@@ -5,14 +5,14 @@ local function canUseGodProperty(ent, ply)
     return IsValid(G4L.VehicleGod.ResolveSeat(ent))
 end
 
-hook.Add("CanProperty", "G4L.VehicleGod:AllowProperty", function(ply, property, ent)
-    if property ~= "g4l_svmod_god_toggle" then return end
+hook.Add("CanProperty", "G4L.SystemHardening:AllowProperty", function(ply, property, ent)
+    if property ~= "g4l_system_hardening_toggle" then return end
     if canUseGodProperty(ent, ply) then return true end
     return false
 end)
 
-properties.Add("g4l_svmod_god_toggle", {
-    MenuLabel = "God SVMOD permanent",
+properties.Add("g4l_system_hardening_toggle", {
+    MenuLabel = "Blindage SVMOD permanent",
     Order = 651,
     MenuIcon = "icon16/shield.png",
 

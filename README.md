@@ -1,8 +1,20 @@
-# SVMod | Blindage système
+# GMod4Life System Hardening
 
-Addon **GMod4Life** pour Garry's Mod — god mode **permanent** sur les véhicules **SVMOD**, par modèle.
+**SVMod | Blindage système** — god mode **permanent** sur les véhicules **SVMOD**, par modèle.
+
+Développé par **[GMod4Life](https://gmod4life-community.fr/)**, open source et **utilisable sur n'importe quel serveur** Garry's Mod équipé de SVMOD — pas réservé à la communauté GMod4Life.
 
 > Version : **1.4.1**
+
+Rendez vos véhicules SVMOD invulnérables de façon **permanente**, par modèle. Détection automatique au spawn, configuration lua, persistance JSON staff, menu admin et toolgun.
+
+### Fonctionnalités
+
+- God permanent SVMOD par modèle (`AlwaysGodModels`, `Vehicles`, `permanent_models.json`)
+- Détection auto au spawn, patch dégâts SVMOD (santé, roues, collisions, explosions)
+- Menu `g4l_god_menu`, toolgun, menu contextuel (C), API `G4L.VehicleGod.*`
+- HUD staff activable/désactivable in-game (désactivé par défaut, staff only)
+- Multilingue **FR / EN**
 
 ---
 
@@ -15,10 +27,10 @@ Addon **GMod4Life** pour Garry's Mod — god mode **permanent** sur les véhicul
 
 ## Installation
 
-1. Placez le dossier `gmod4life_svmod_god` dans `garrysmod/addons/`
+1. Placez le dossier `gmod4life_system_hardening` dans `garrysmod/addons/`
 2. Redémarrez le serveur (ou `lua_refresh` en dev)
-3. Configurez `lua/g4l_svmod_god/config.lua`
-4. (Optionnel) Ajoutez des modèles en jeu via `g4l_god_menu` — sauvegardés dans `data/g4l_svmod_god/permanent_models.json`
+3. Configurez `lua/g4l_system_hardening/config.lua`
+4. (Optionnel) Ajoutez des modèles en jeu via `g4l_god_menu` — sauvegardés dans `data/gmod4life_system_hardening/permanent_models.json`
 
 ---
 
@@ -29,7 +41,7 @@ Un véhicule SVMOD est **invulnérable de façon permanente** si son **modèle**
 | Source | Fichier | Retirable en jeu ? |
 |--------|---------|-------------------|
 | Config lua | `AlwaysGodModels` / `Vehicles["id"]` | Non — éditer `config.lua` |
-| Staff | `data/g4l_svmod_god/permanent_models.json` | Oui — menu / toolgun / C |
+| Staff | `data/gmod4life_system_hardening/permanent_models.json` | Oui — menu / toolgun / C |
 
 À chaque spawn SVMOD, le modèle est détecté automatiquement. Le patch bloque santé, roues, collisions et explosions.
 
@@ -37,21 +49,22 @@ Un véhicule SVMOD est **invulnérable de façon permanente** si son **modèle**
 
 ## Configuration
 
-Fichier : `lua/g4l_svmod_god/config.lua`
+Fichier : `lua/g4l_system_hardening/config.lua`
 
 ```lua
 G4L.Config.VehicleGod = {
     Enabled = true,
     DefaultLanguage = "fr",
+    DataDir = "gmod4life_system_hardening",
 
     ApplyConfigOnSpawn = true,
     AutoRepairOnEnable = true,
     ProtectOccupants = false,
 
     Hud = {
-        AdminCrosshair = true,   -- infobox véhicule visé
-        PlayerIndicator = true,  -- badge "GOD SVMOD"
-        AdminsOnly = true,       -- jamais visible pour les joueurs
+        AdminCrosshair = true,
+        PlayerIndicator = true,
+        AdminsOnly = true,
     },
 
     AdminGroups = { ... },
@@ -75,11 +88,11 @@ G4L.Config.VehicleGod = {
 
 | Commande | Description |
 |----------|-------------|
-| `g4l_god_menu` | Menu admin (config, JSON, véhicules actifs, **toggle HUD**) |
-| `g4l_god_toggle` | Basculer god permanent du modèle visé |
+| `g4l_god_menu` | Menu admin (config, JSON, véhicules actifs, toggle HUD) |
+| `g4l_god_toggle` | Basculer blindage permanent du modèle visé |
 | `g4l_god_add` | Ajouter le modèle visé au JSON permanent |
 | `g4l_god_remove` | Retirer le modèle visé du JSON permanent |
-| `g4l_god_list` | Lister tous les modèles en god permanent |
+| `g4l_god_list` | Lister tous les modèles blindés |
 | `g4l_god_clear` | Vider le JSON (ne touche pas à `config.lua`) |
 | `g4l_god_repair` | Réparer le véhicule SVMOD visé |
 | `g4l_god_apply` | Réappliquer le blindage sur tous les véhicules SVMOD |
@@ -88,13 +101,13 @@ G4L.Config.VehicleGod = {
 
 ---
 
-## Toolgun — G4L SVMOD God
+## Toolgun — System Hardening
 
 Catégorie **GMod4Life** dans le menu toolgun.
 
 | Action | Effet |
 |--------|--------|
-| Clic gauche | Basculer god permanent du modèle visé |
+| Clic gauche | Basculer blindage permanent du modèle visé |
 | Clic droit | Réparer le véhicule visé |
 | Rechargement (R) | Infos véhicule visé |
 
@@ -102,23 +115,23 @@ Catégorie **GMod4Life** dans le menu toolgun.
 
 ## Menu contextuel (touche C)
 
-- **Ajouter god permanent** — enregistre le modèle dans le JSON
-- **Retirer god permanent** — retire le modèle du JSON
-- **God permanent (config)** — verrouillé via `config.lua` (cadenas)
+- **Ajouter blindage permanent** — enregistre le modèle dans le JSON
+- **Retirer blindage permanent** — retire le modèle du JSON
+- **Blindage permanent (config)** — verrouillé via `config.lua` (cadenas)
 
 ---
 
 ## HUD staff
 
 - **Désactivé par défaut** pour tous (y compris staff)
-- Activable via le bouton **« Activer le HUD »** dans `g4l_god_menu`
-- **Jamais visible** pour les joueurs normaux (`AdminsOnly = true`)
+- Activable via **« Activer le HUD »** dans `g4l_god_menu`
+- **Jamais visible** pour les joueurs normaux
 - Affiche : infobox sur véhicule visé + badge en conduisant
 
-Convar client (langue uniquement) :
+Convar client (langue) :
 
 ```
-g4l_svmod_god_lang fr   -- ou en
+g4l_system_hardening_lang fr   -- ou en
 ```
 
 ---
@@ -142,22 +155,20 @@ G4L.VehicleGod.TogglePermanent(seat, ply)
 
 | Système | Type | Addon |
 |---------|------|-------|
-| **God permanent** | Invulnérabilité totale par modèle | `gmod4life_svmod_god` |
+| **Blindage permanent** | Invulnérabilité totale par modèle | `gmod4life_system_hardening` |
 | **Blindage temporaire** | Anti-balles sur un véhicule (session) | `dmod_admin` (menu C staff) |
-
-Les deux systèmes sont **indépendants**.
 
 ---
 
 ## Structure
 
 ```
-gmod4life_svmod_god/
+gmod4life_system_hardening/
 ├── README.md
 ├── version.txt
 └── lua/
-    ├── autorun/g4l_svmod_god_init.lua
-    ├── g4l_svmod_god/
+    ├── autorun/g4l_system_hardening_init.lua
+    ├── g4l_system_hardening/
     │   ├── config.lua
     │   ├── sh_core.lua
     │   ├── sh_lang.lua
@@ -168,7 +179,7 @@ gmod4life_svmod_god/
     │   ├── cl_god.lua
     │   ├── cl_properties.lua
     │   └── cl_fonts.lua
-    └── weapons/gmod_tool/stools/g4l_svmod_god.lua
+    └── weapons/gmod_tool/stools/g4l_system_hardening.lua
 ```
 
 ---
@@ -181,8 +192,6 @@ gmod4life_svmod_god/
 
 ---
 
-## GMod4Life
+## Crédits
 
-Développé pour [GMod4Life](https://gmod4life-community.fr/) — code sécurisé, config claire, prêt production.
-
-**Licence** — voir les conditions GModStore / G4L.
+Addon développé par **[GMod4Life](https://gmod4life-community.fr/)** — libre d'utilisation sur tout serveur Garry's Mod compatible SVMOD.

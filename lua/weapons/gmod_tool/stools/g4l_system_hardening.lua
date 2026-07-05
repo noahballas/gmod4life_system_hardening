@@ -1,14 +1,14 @@
 TOOL.Category = "GMod4Life"
-TOOL.Name = "#tool.g4l_svmod_god.name"
+TOOL.Name = "#tool.g4l_system_hardening.name"
 TOOL.Command = nil
 TOOL.ConfigName = ""
 
 if CLIENT then
-    language.Add("tool.g4l_svmod_god.name", "G4L SVMOD God")
-    language.Add("tool.g4l_svmod_god.desc", "Toggle god mode on SVMOD vehicles")
-    language.Add("tool.g4l_svmod_god.left", "Toggle god mode")
-    language.Add("tool.g4l_svmod_god.right", "Repair vehicle")
-    language.Add("tool.g4l_svmod_god.reload", "Vehicle info")
+    language.Add("tool.g4l_system_hardening.name", "System Hardening")
+    language.Add("tool.g4l_system_hardening.desc", "Blindage permanent SVMOD par modele")
+    language.Add("tool.g4l_system_hardening.left", "Basculer blindage permanent")
+    language.Add("tool.g4l_system_hardening.right", "Reparer le vehicule")
+    language.Add("tool.g4l_system_hardening.reload", "Infos vehicule")
 end
 
 local function isAdmin(ply)
@@ -61,7 +61,7 @@ function TOOL:DrawHUD()
 end
 
 function TOOL.BuildCPanel(panel)
-    panel:Help(G4L and G4L.VehicleGod and G4L.VehicleGod.L("tool_desc") or "Toggle god mode on SVMOD vehicles.")
+    panel:Help(G4L and G4L.VehicleGod and G4L.VehicleGod.L("tool_desc") or "Blindage permanent SVMOD.")
     panel:Help(G4L.VehicleGod.L("menu_command"))
     panel:Help("g4l_god_toggle | g4l_god_add | g4l_god_remove | g4l_god_menu")
 end

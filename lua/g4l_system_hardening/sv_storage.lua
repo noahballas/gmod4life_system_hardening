@@ -3,7 +3,7 @@ if CLIENT then return end
 G4L.VehicleGod.Store = G4L.VehicleGod.Store or {}
 
 local function getStorePath()
-    local dir = G4L.VehicleGod.GetConfig().DataDir or "g4l_svmod_god"
+    local dir = G4L.VehicleGod.GetConfig().DataDir or "gmod4life_system_hardening"
     return dir .. "/permanent_models.json"
 end
 
@@ -21,7 +21,7 @@ end
 
 function G4L.VehicleGod.Store.Save(data)
     local path = getStorePath()
-    local dir = G4L.VehicleGod.GetConfig().DataDir or "g4l_svmod_god"
+    local dir = G4L.VehicleGod.GetConfig().DataDir or "gmod4life_system_hardening"
     file.CreateDir(dir)
     file.Write(path, util.TableToJSON(data, true))
 end

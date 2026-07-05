@@ -20,5 +20,5 @@ net.Receive("G4L.VehicleGod:Notify", function()
         [2] = Color(255, 200, 80),
     }
 
-    chat.AddText(colors[typ] or colors[0], "[G4L God] ", Color(255, 255, 255), msg)
+    chat.AddText(colors[typ] or colors[0], "[G4L Hardening] ", Color(255, 255, 255), msg)
 end)

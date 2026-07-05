@@ -1,5 +1,5 @@
 --[[
-    G4L SVMOD God — God PERMANENT par modele
+    G4L System Hardening — God PERMANENT par modele
     Tout vehicule SVMOD dont le modele est liste ici ou en JSON reste invulnerable.
 ]]
 
@@ -11,8 +11,8 @@ G4L.Config.VehicleGod = {
     Enabled = true,
     DefaultLanguage = "fr",
 
-    -- Fichier des modeles ajoutes en jeu : data/g4l_svmod_god/permanent_models.json
-    DataDir = "g4l_svmod_god",
+    -- Fichier des modeles ajoutes en jeu : data/gmod4life_system_hardening/permanent_models.json
+    DataDir = "gmod4life_system_hardening",
 
     ApplyConfigOnSpawn = true,
     AutoRepairOnEnable = true,

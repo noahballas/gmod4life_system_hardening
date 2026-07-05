@@ -295,7 +295,7 @@ concommand.Add("g4l_god_list", function(ply)
     end
 
     local function printLine(msg)
-        if IsValid(ply) then ply:ChatPrint("[G4L God] " .. msg) else print("[G4L God] " .. msg) end
+        if IsValid(ply) then ply:ChatPrint("[G4L Hardening] " .. msg) else print("[G4L Hardening] " .. msg) end
     end
 
     printLine("--- Config ---")
